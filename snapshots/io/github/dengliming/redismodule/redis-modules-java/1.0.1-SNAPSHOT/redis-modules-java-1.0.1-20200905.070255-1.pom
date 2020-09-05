@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>io.github.dengliming.redismodule</groupId>
+    <artifactId>redis-modules-java</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.1-SNAPSHOT</version>
+    <modules>
+        <module>all</module>
+        <module>redisbloom</module>
+        <module>redisearch</module>
+        <module>redisai</module>
+        <module>redistimeseries</module>
+        <module>redisgears</module>
+        <module>commons</module>
+    </modules>
+
+    <name>Redis-Modules-Java</name>
+    <url>https://github.com/dengliming/redis-modules-java</url>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <redisson.version>3.13.1</redisson.version>
+        <junit.version>5.6.2</junit.version>
+        <java.version>1.8</java.version>
+        <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-shade-plugin.version>3.2.1</maven-shade-plugin.version>
+		<maven-release-plugin.version>2.5.3</maven-release-plugin.version>
+    </properties>
+
+	<scm>
+		<url>scm:git:git@github.com:dengliming/redis-modules-java.git</url>
+		<connection>scm:git:git@github.com:dengliming/redis-modules-java.git</connection>
+		<developerConnection>scm:git:git@github.com:dengliming/redis-modules-java.git</developerConnection>
+		<tag>HEAD</tag>
+	</scm>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>io.github.dengliming.redismodule</groupId>
+                <artifactId>commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.dengliming.redismodule</groupId>
+                <artifactId>commons</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.dengliming.redismodule</groupId>
+                <artifactId>redisai</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.dengliming.redismodule</groupId>
+                <artifactId>redisbloom</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.dengliming.redismodule</groupId>
+                <artifactId>redisearch</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.dengliming.redismodule</groupId>
+                <artifactId>redisgears</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.dengliming.redismodule</groupId>
+                <artifactId>redistimeseries</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.redisson</groupId>
+                <artifactId>redisson</artifactId>
+                <version>${redisson.version}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-release-plugin</artifactId>
+				<version>${maven-release-plugin.version}</version>
+				<configuration>
+					<tagNameFormat>v@{project.version}</tagNameFormat>
+					<autoVersionSubmodules>true</autoVersionSubmodules>
+					<useReleaseProfile>true</useReleaseProfile>
+					<releaseProfiles>release</releaseProfiles>
+					<arguments>-Dmaven.javadoc.skip=true -Dmaven.test.skipTests=true -Dmaven.test.skip=true</arguments>
+				</configuration>
+			</plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>${maven-source-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>releases</name>
+			<url>file:/data/mvn-repo/repository/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot</id>
+			<name>snapshot</name>
+			<url>file:/data/mvn-repo/repository/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+</project>

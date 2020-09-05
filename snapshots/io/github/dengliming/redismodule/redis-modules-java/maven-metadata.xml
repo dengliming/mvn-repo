@@ -4,8 +4,8 @@
   <artifactId>redis-modules-java</artifactId>
   <versioning>
     <versions>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20200509173004</lastUpdated>
+    <lastUpdated>20200905070255</lastUpdated>
   </versioning>
 </metadata>

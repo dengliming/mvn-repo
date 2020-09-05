@@ -4,8 +4,8 @@
   <artifactId>redisbloom</artifactId>
   <versioning>
     <versions>
-      <version>1.0.0-SNAPSHOT</version>
+      <version>1.0.1-SNAPSHOT</version>
     </versions>
-    <lastUpdated>20200509173008</lastUpdated>
+    <lastUpdated>20200905070258</lastUpdated>
   </versioning>
 </metadata>
